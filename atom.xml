@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-26T14:57:57.817Z</updated>
+  <updated>2019-04-26T15:39:14.614Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ipython安装 </title>
+    <link href="http://yoursite.com/2019/04/26/Ipython%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2019/04/26/Ipython安装/</id>
+    <published>2019-04-26T15:33:00.000Z</published>
+    <updated>2019-04-26T15:39:14.614Z</updated>
+    
+    <content type="html"><![CDATA[<p>1.pip install ipython //这条指令会自动安装ipyton以及它的各种依赖库</p><p>2.pip install jupyter//如果想在notebook或者Qt  console,还需要安装Jupytersa</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1.pip install ipython //这条指令会自动安装ipyton以及它的各种依赖库&lt;/p&gt;
+&lt;p&gt;2.pip install jupyter//如果想在notebook或者Qt  console,还需要安装Jupytersa&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="python" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/python/"/>
+    
+    
+      <category term="python" scheme="http://yoursite.com/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA安装及环境配置（window10系统+jdk8.0）</title>
+    <link href="http://yoursite.com/2019/04/26/JAVA%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88window10%E7%B3%BB%E7%BB%9F-jdk8-0%EF%BC%89/"/>
+    <id>http://yoursite.com/2019/04/26/JAVA安装及环境配置（window10系统-jdk8-0）/</id>
+    <published>2019-04-26T15:01:00.000Z</published>
+    <updated>2019-04-26T15:18:37.724Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>jdk的下载</li></ol><p><img src="\images\pasted-1.png" alt><br><a href="http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;pn=Eclipse%20Installer&amp;pu=http://wiki.eclipse.org/Eclipse_Installer&amp;pi=http://download.eclipse.org/oomph/jre/128x128.png根据对应的电脑版本安装即可" target="_blank" rel="noopener">http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;pn=Eclipse%20Installer&amp;pu=http://wiki.eclipse.org/Eclipse_Installer&amp;pi=http://download.eclipse.org/oomph/jre/128x128.png根据对应的电脑版本安装即可</a><br>    2.jdk的安装</p><pre><code>* 在D盘新建一个java文件夹，在java文件下新建两个文件夹，分别命名为jdk和jre.* 开始点击安装程序， 安装时有两次选择路径的机会，第一次是让你选择jdk安装路径，选择为D:\java\jdk，第二次是让你选择jre的安装路径，选择为D:\java\jre* .安装完成后，进行环境变量的配置，计算机右击属性，-高级系统设置-环境变量-选择下边的系统变量，如果桌面上没有 我的电脑 打开文件夹，点击那里的我的电脑* 新建* 变量名：JAVA_HOME* 变量值：D:\java\jdk（没有分号）* 变量名：ClassPath* 变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;* 查看是否有path变量，如果没有创建一个，然后添加 C:\ProgramData\Oracle\Java\javapath;* 应为Javac和java不在同一个包里，所以添加变量* D:\java\jdk\bin* D:\java\jre\bin* 按win+R，输入cmd,打开命令提示符，输入Java，javac，Java-version* 均能运行表示Java安装成功，* 返回最开始的网站，下载eclipse编译器（idle位数的选择取决于你jdk的版本是32还是64），既可以写Java程序了，无需安装，解压即可。</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;jdk的下载&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;\images\pasted-1.png&quot; alt&gt;&lt;br&gt;&lt;a href=&quot;http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;amp;pn
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="java" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/java/"/>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>const char*, char const*, char*const的区别问题</title>
@@ -46,9 +105,17 @@
     <link href="http://yoursite.com/2019/04/26/%E5%8D%9A%E5%AE%A2%E5%88%9D%E5%88%9B/"/>
     <id>http://yoursite.com/2019/04/26/博客初创/</id>
     <published>2019-04-26T13:29:37.000Z</published>
-    <updated>2019-04-26T13:39:24.088Z</updated>
+    <updated>2019-04-26T15:37:57.125Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一次写博客，花了不少时间搭建服务器</p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;p&gt;第一次写博客，花了不少时间搭建服务器&lt;/p&gt;
+
+      
     
     </summary>
     
