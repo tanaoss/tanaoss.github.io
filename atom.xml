@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-28T04:11:38.118Z</updated>
+  <updated>2019-04-28T04:14:18.130Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2019/04/28/%E5%BF%AB%E9%80%9F%E5%B9%82%E7%AE%97%E6%B3%95/"/>
     <id>http://yoursite.com/2019/04/28/快速幂算法/</id>
     <published>2019-04-28T04:02:00.000Z</published>
-    <updated>2019-04-28T04:11:38.118Z</updated>
+    <updated>2019-04-28T04:14:18.130Z</updated>
     
     <content type="html"><![CDATA[<p>#include&lt; iostream&gt;</p><p>#include&lt; stdio.h&gt;</p><p>#define  ll long long<br>using namespace std;<br>int kpow(ll a,ll b);<br>int main()<br>{<br>    kpow(2,32);<br>}<br>int kpow(ll a,ll b)//int kpow(lla,llb,int c)<br>{<br>    ll ans=1,base=a,temp=b;<br>    while(b)<br>    {<br>        if(b&amp;1!=0)#任何大于0的数除以2以后，最终都会为1<br>            ans<em>=base;//ans=ans</em>base%c<br>        base<em>=base;//base=(base</em>base)%c<br>        cout&lt;&lt;base&lt;&lt;” “&lt;&lt;b&lt;&lt;endl;<br>        b&gt;&gt;=1;<br>    }<br>    printf(“%lld的%lld次方为：%lld\n”,a,temp,ans);<br>    return ans;<br>}<br>快速幂本质上a^n=a^n/2*a^n/2,如果是取数取余数，见代码注释</p>]]></content>
     
@@ -38,8 +38,10 @@
     
       <category term="算法" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/"/>
     
-      <category term="c++" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/c/"/>
+      <category term="快速幂" scheme="http://yoursite.com/categories/%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E5%B9%82/"/>
     
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
     
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
     
