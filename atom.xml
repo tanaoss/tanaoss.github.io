@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-04-28T04:14:18.130Z</updated>
+  <updated>2019-05-03T03:47:07.727Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,21 +17,52 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>快速幂算法</title>
-    <link href="http://yoursite.com/2019/04/28/%E5%BF%AB%E9%80%9F%E5%B9%82%E7%AE%97%E6%B3%95/"/>
-    <id>http://yoursite.com/2019/04/28/快速幂算法/</id>
-    <published>2019-04-28T04:02:00.000Z</published>
-    <updated>2019-04-28T04:14:18.130Z</updated>
+    <title>字典树</title>
+    <link href="http://yoursite.com/2019/05/03/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
+    <id>http://yoursite.com/2019/05/03/字典树/</id>
+    <published>2019-05-03T03:44:00.000Z</published>
+    <updated>2019-05-03T03:47:07.727Z</updated>
     
-    <content type="html"><![CDATA[<p>#include&lt; iostream&gt;</p><p>#include&lt; stdio.h&gt;</p><p>#define  ll long long<br>using namespace std;<br>int kpow(ll a,ll b);<br>int main()<br>{<br>    kpow(2,32);<br>}<br>int kpow(ll a,ll b)//int kpow(lla,llb,int c)<br>{<br>    ll ans=1,base=a,temp=b;<br>    while(b)<br>    {<br>        if(b&amp;1!=0)#任何大于0的数除以2以后，最终都会为1<br>            ans<em>=base;//ans=ans</em>base%c<br>        base<em>=base;//base=(base</em>base)%c<br>        cout&lt;&lt;base&lt;&lt;” “&lt;&lt;b&lt;&lt;endl;<br>        b&gt;&gt;=1;<br>    }<br>    printf(“%lld的%lld次方为：%lld\n”,a,temp,ans);<br>    return ans;<br>}<br>快速幂本质上a^n=a^n/2*a^n/2,如果是取数取余数，见代码注释</p>]]></content>
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;string&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">struct Node//结点</span><br><span class="line">&#123;</span><br><span class="line">    bool isEnd;//是否是最后一个结点，判断是否完全匹配</span><br><span class="line">    Node*son[26];//子结点，一共26个字母</span><br><span class="line">    char val;//当前结点值</span><br><span class="line">    long long num;//当前结点与父结点的距离</span><br><span class="line">    Node(char x=&apos;a&apos;):isEnd(false),num(0)</span><br><span class="line">    &#123;</span><br><span class="line">        for(int i=0;i&lt;26;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            son[i]=NULL;</span><br><span class="line">        &#125;</span><br><span class="line">        val=x;</span><br><span class="line">    &#125;</span><br><span class="line">    ~Node()//析构函数</span><br><span class="line">    &#123;</span><br><span class="line">        for(int i=0;i&lt;26;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            if(son[i])</span><br><span class="line">                delete son[i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">struct Tree//树</span><br><span class="line">&#123;</span><br><span class="line">    Node*root;</span><br><span class="line">    Tree()</span><br><span class="line">    &#123;</span><br><span class="line">        root=new Node();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Tree head;//头,字典树头节点不包含信息</span><br><span class="line">void insert_str(string s)//字符串为空，返回</span><br><span class="line">&#123;</span><br><span class="line">    if(s.size()==0)</span><br><span class="line">    &#123;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    Node*temp=head.root;</span><br><span class="line">    for(int i=0;i&lt;s.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        int pos=s[i]-&apos;a&apos;;</span><br><span class="line">        if(temp-&gt;son[i]==NULL)//如果不存在，那么开辟空间</span><br><span class="line">        &#123;</span><br><span class="line">            temp-&gt;son[i]=new Node(s[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        temp=temp-&gt;son[i];//存在，继续遍历</span><br><span class="line">    &#125;</span><br><span class="line">    temp-&gt;isEnd=true;//插入的最后一个字符，标记</span><br><span class="line">&#125;</span><br><span class="line">bool query(string s)</span><br><span class="line">&#123;</span><br><span class="line">    if(!s.size())</span><br><span class="line">        return false;</span><br><span class="line">    Node*temp=head.root;</span><br><span class="line">    for(int i=0;i&lt;s.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">       int pos=s[i]-&apos;a&apos;;</span><br><span class="line">        if(temp-&gt;son[i]==NULL)//如果不存在，不匹配</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        temp=temp-&gt;son[i];//存在，继续遍历</span><br><span class="line">    &#125;</span><br><span class="line">    return temp-&gt;isEnd;//可能是部分匹配</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    long long T;</span><br><span class="line">    cin&gt;&gt;T;</span><br><span class="line">    string s;</span><br><span class="line">    while(T--)//建树，插入字符串</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;s;</span><br><span class="line">        insert_str(s);</span><br><span class="line">    &#125;</span><br><span class="line">    cin&gt;&gt;T;</span><br><span class="line">    while(T--)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;s;</span><br><span class="line">        if(query(s))</span><br><span class="line">        &#123;</span><br><span class="line">            cout&lt;&lt;&quot;exist\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">             cout&lt;&lt;&quot;no exist\n&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>字典树本质是一种文本快速匹配算法</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;#include&amp;lt; iostream&amp;gt;&lt;/p&gt;
-&lt;p&gt;#include&amp;lt; stdio.h&amp;gt;&lt;/p&gt;
-&lt;p&gt;#define  ll long long&lt;br&gt;using namespace std;&lt;br&gt;int kpow(ll a,ll b);&lt;br
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="数据结构" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%AE%97%E6%B3%95/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="数据结构" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速幂算法</title>
+    <link href="http://yoursite.com/2019/04/28/%E5%BF%AB%E9%80%9F%E5%B9%82%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2019/04/28/快速幂算法/</id>
+    <published>2019-04-28T04:02:00.000Z</published>
+    <updated>2019-05-03T03:44:52.763Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#include&lt; iostream&gt;</span><br><span class="line">#include&lt; stdio.h&gt;</span><br><span class="line">#define  ll long long</span><br><span class="line">using namespace std;</span><br><span class="line">int kpow(ll a,ll b);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    kpow(2,32);</span><br><span class="line">&#125;</span><br><span class="line">int kpow(ll a,ll b)//int kpow(lla,llb,int c)</span><br><span class="line">&#123;</span><br><span class="line">    ll ans=1,base=a,temp=b;</span><br><span class="line">    while(b)</span><br><span class="line">    &#123;</span><br><span class="line">        if(b&amp;1!=0)#任何大于0的数除以2以后，最终都会为1</span><br><span class="line">        ans*=base;//ans=ans*base%c</span><br><span class="line">        base*=base;//base=(base*base)%c</span><br><span class="line">        cout&lt;&lt;base&lt;&lt;&quot; &quot;&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">        b&gt;&gt;=1;</span><br><span class="line">    &#125;</span><br><span class="line">    printf(&quot;%lld的%lld次方为：%lld\n&quot;,a,temp,ans);</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>  快速幂本质上<br><img src="\images\pasted-2.png" alt="upload successful">,如果是取数取余数(中间结果取余相乘即可)，见代码注释</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
       
     
     </summary>
@@ -44,6 +75,8 @@
       <category term="c++" scheme="http://yoursite.com/tags/c/"/>
     
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="数据结构" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
   </entry>
   
@@ -81,7 +114,7 @@
     <link href="http://yoursite.com/2019/04/26/JAVA%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%EF%BC%88window10%E7%B3%BB%E7%BB%9F-jdk8-0%EF%BC%89/"/>
     <id>http://yoursite.com/2019/04/26/JAVA安装及环境配置（window10系统-jdk8-0）/</id>
     <published>2019-04-26T15:01:00.000Z</published>
-    <updated>2019-04-26T15:18:37.724Z</updated>
+    <updated>2019-05-03T03:41:51.965Z</updated>
     
     <content type="html"><![CDATA[<ol><li>jdk的下载</li></ol><p><img src="\images\pasted-1.png" alt><br><a href="http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;pn=Eclipse%20Installer&amp;pu=http://wiki.eclipse.org/Eclipse_Installer&amp;pi=http://download.eclipse.org/oomph/jre/128x128.png根据对应的电脑版本安装即可" target="_blank" rel="noopener">http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;pn=Eclipse%20Installer&amp;pu=http://wiki.eclipse.org/Eclipse_Installer&amp;pi=http://download.eclipse.org/oomph/jre/128x128.png根据对应的电脑版本安装即可</a><br>    2.jdk的安装</p><pre><code>* 在D盘新建一个java文件夹，在java文件下新建两个文件夹，分别命名为jdk和jre.* 开始点击安装程序， 安装时有两次选择路径的机会，第一次是让你选择jdk安装路径，选择为D:\java\jdk，第二次是让你选择jre的安装路径，选择为D:\java\jre* .安装完成后，进行环境变量的配置，计算机右击属性，-高级系统设置-环境变量-选择下边的系统变量，如果桌面上没有 我的电脑 打开文件夹，点击那里的我的电脑* 新建* 变量名：JAVA_HOME* 变量值：D:\java\jdk（没有分号）* 变量名：ClassPath* 变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;* 查看是否有path变量，如果没有创建一个，然后添加 C:\ProgramData\Oracle\Java\javapath;* 应为Javac和java不在同一个包里，所以添加变量* D:\java\jdk\bin* D:\java\jre\bin* 按win+R，输入cmd,打开命令提示符，输入Java，javac，Java-version* 均能运行表示Java安装成功，* 返回最开始的网站，下载eclipse编译器（idle位数的选择取决于你jdk的版本是32还是64），既可以写Java程序了，无需安装，解压即可。</code></pre>]]></content>
     
