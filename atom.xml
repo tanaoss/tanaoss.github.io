@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-08T02:10:32.650Z</updated>
+  <updated>2019-05-09T06:02:41.676Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title> c++如果两个在不同头文件如何相互引用</title>
+    <link href="http://yoursite.com/2019/05/09/c-%E5%A6%82%E6%9E%9C%E4%B8%A4%E4%B8%AA%E5%9C%A8%E4%B8%8D%E5%90%8C%E5%A4%B4%E6%96%87%E4%BB%B6%E5%A6%82%E4%BD%95%E7%9B%B8%E4%BA%92%E5%BC%95%E7%94%A8/"/>
+    <id>http://yoursite.com/2019/05/09/c-如果两个在不同头文件如何相互引用/</id>
+    <published>2019-05-09T06:02:00.000Z</published>
+    <updated>2019-05-09T06:02:41.676Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="c-如果两个在不同头文件如何相互引用"><a href="#c-如果两个在不同头文件如何相互引用" class="headerlink" title="c++如果两个在不同头文件如何相互引用"></a>c++如果两个在不同头文件如何相互引用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//first.h</span><br><span class="line">class a</span><br><span class="line">&#123;</span><br><span class="line">    friend class b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//seconde.h</span><br><span class="line">class b</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">b*a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>因为两个不同类相互引用，需要放入对方的头文件，但是如果分别放入<code>#include seconde.h  #include seconde.h</code>那么会产生重复编译的问题<br>但是可以改为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//first.h</span><br><span class="line">class b；//提前声明</span><br><span class="line">class a</span><br><span class="line">&#123;</span><br><span class="line">    friend class b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//seconde.h</span><br><span class="line">#include first.h//引入头文件</span><br><span class="line">class b</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">b*a;</span><br><span class="line">&#125;</span><br><span class="line">//同时这几个.h的实现文件.cpp只用引入其中一个头文件即可，不需要同时引入两个</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;c-如果两个在不同头文件如何相互引用&quot;&gt;&lt;a href=&quot;#c-如果两个在不同头文件如何相互引用&quot; class=&quot;headerlink&quot; title=&quot;c++如果两个在不同头文件如何相互引用&quot;&gt;&lt;/a&gt;c++如果两个在不同头文件如何相互引用&lt;/h3&gt;&lt;figure
+      
+    
+    </summary>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="头文件" scheme="http://yoursite.com/tags/%E5%A4%B4%E6%96%87%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>MarKDown语法</title>
