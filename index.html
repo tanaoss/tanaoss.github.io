@@ -343,6 +343,312 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/c-Primer-Plus-第四章）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tanghao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赤羽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/13/c-Primer-Plus-第四章）/" class="post-title-link" itemprop="url">c++ Primer Plus(第四章）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-13 13:29:00 / 修改时间：13:36:01" itemprop="dateCreated datePublished" datetime="2019-05-13T13:29:00+08:00">2019-05-13</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/c-Primer-Plus/" itemprop="url" rel="index"><span itemprop="name">c++ Primer Plus</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>1.<strong>数组初始化规则</strong></p>
+<ul>
+<li>数组不能相互赋值，因为数组名本质上是const指针</li>
+<li>数组如果不用花括号进行初始化，那么值是未知的，如果未全部初始化，即花括号元素小于数组大小，那么编译器将会把其他元素全部初始化为0（所以把数组所有元素初始化的方式是显式设置为0）</li>
+<li><strong><em>c++11新规则</em></strong> <ul>
+<li>初始化数组时候，可省略等号，大括号内可以不以不包含元素，系统默认设置为0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int count[10]&#123;&#125;;//元素全部被设置为0，同时这种列表初始化方式不允许，精度丢失的转换</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>字符串</strong></li>
+</ol>
+<ul>
+<li><p><em>字符串与字符数组</em></p>
+<ul>
+<li>字符数组如果没有显式包含’\0’,那么不是字符串，只是字符数组，反之为字符串（将之当作字符串处理使用一些库函数将出错）</li>
+</ul>
+</li>
+<li><p>c++中允许以下的方式初始化（不必显式包含’\0’）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char [10]=&quot;hello&quot;;//“hello”字符串隐式包含&apos;\0&apos;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>c++输入工具通过键盘输入时，将字符串读入到char数组时，将自动加上结尾的’\0’;</p>
+</li>
+<li><p>以字符串常量初始化数组时，应该保证数组足够，能装下字符串+’\0’</p>
+</li>
+<li><p><em>“S”=’S’+’\0’;</em> 注意与单个字符不一致</p>
+</li>
+<li><p><em>字符常量拼接</em></p>
+<ul>
+<li>事实上，任何两个由空白（空格，制表符和换行符）分隔的字符串常量都将自动拼接为一个<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;&quot;hello world&quot;;</span><br><span class="line">cout&lt;&lt;&quot;hello &quot; &quot;world&quot;;</span><br><span class="line">cout&lt;&lt;&quot;hello&quot;</span><br><span class="line">&quot;world&quot;;</span><br><span class="line">//这三种输出均等价</span><br><span class="line">//应该注意，拼接时不会在连接的字符串中添加空格。第一个字符串的\0将被第二个字符串的第一个字符覆盖</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="3">
+<li><p><strong>字符串cin输入</strong></p>
+<ul>
+<li><code>cin</code>用空白（空格，制表符，换行）作为字符串的结束位置，也就是说，如果使用<code>cin&gt;&gt;str</code>,来为str赋值，那么输入的字符串不能被空白符间隔开来，否则系统将会留下后半部分在队列中，等待下一次输入，同时作为结束标志的换行符会被留在队列</li>
+</ul>
+</li>
+<li><p><strong>读取一行的输入</strong></p>
+<ul>
+<li>基于上面所说的问题，iostream中的类（如<code>cin</code>),提供了一些类成员函数<ul>
+<li>getline（）<ul>
+<li>getline（）函数读取整行，他使用通过回车键来确定输入结尾。调用 <code>cin.getline()</code>.该函数有两个参数，第一个参数用来存储输入行的存贮地址，即数组名。第二个参数是读取字符数（包括\0）,即参数设置为20，那么最多读取19个字符。(<strong><em>在碰到换行符或者到达指定的数目时停止读取,(并且丢弃换行符(丢弃指缓冲区都没),如果是以换行符结束</em></strong>)</li>
+</ul>
+</li>
+<li>get()<ul>
+<li>get()接受参数与工作方式与getline（）相似，但是并不丢弃（<strong>但也不读取，而是留在缓冲区（带参数的get（name，len））</strong>）\n,而是将其留在输入队列。即连续两次读取，第二次读取将会应为读取到\n，而终止</li>
+<li>get（）的重载函数，不带参数的get（）可读取<strong>下一个字符</strong>，即使<strong>是换行符\n</strong>,可以使用这个函数来吸收留在缓冲区的换行符</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cin.get(name,len);//返回一个cin对象</span><br><span class="line">cin.get();</span><br><span class="line">//上面两句等价与 cin.get(name,len).get();</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li><strong>空行和其他问题</strong></li>
+</ol>
+<ul>
+<li>get（）（不是getline（））读取空行后将设置失效位置（failbit）阻断输入，可以使用cin.clear();来恢复<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char s1[20],s2[30],s3[30],s4;</span><br><span class="line">    cin.get(s1,20);</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s2,20);//空行</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s3,20);</span><br><span class="line">    puts(s1);</span><br><span class="line">    puts(s2);</span><br><span class="line">    puts(s3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>程序截屏<br><img src="\images\TIM图片20190511162243.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char s1[20],s2[30],s3[30],s4;</span><br><span class="line">    cin.get(s1,20);</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s2,20);//空行</span><br><span class="line">    cin.clear();//读取空行后，应该立即重新设置，否则get（）无法读取换行符，产生错误</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s3,20);</span><br><span class="line">    puts(s1);</span><br><span class="line">    puts(s2);</span><br><span class="line">    puts(s3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>程序截屏<br><img src="\images\TIM图片20190511162448.png" alt="1dcd7dccec6a39b13e3dd9ce2032c49e.png"></p>
+<ul>
+<li>当输入字符串长于可分配空间，get()和getline（）将把余下的字符留在缓冲区，getline（）还会设置失效位，关闭后面的输入</li>
+</ul>
+<p>6.<strong>String</strong></p>
+<ul>
+<li>c++11允许使用列表初始化字符串和字符数组 string s1={“hello”}</li>
+<li><em>string 的赋值拼接和附加</em><ul>
+<li>string类变量允许使用等号直接赋值，字符数组不行</li>
+<li>string类可是使用+号合并两个字符串，使用+=追加字符串</li>
+<li>string 类 + 等价与 c的strcop（charr1，charr2）：第一个，第二个参数都为数组名，函数的意义是把第二个参数赋值给第一个，但是有可能因为数组长度问题，发生内存错误</li>
+<li>+=等价对于strcat（charr1，charr2）：c++中，第二个可以为字符串常量，<em>如果字符串常量大于数组的，那么不会为数组添加\0,并且剩余部分继续覆盖，可能会覆盖其他程序所需要使用的内存</em></li>
+</ul>
+</li>
+</ul>
+<p>7.<strong>string类i\o</strong></p>
+<ul>
+<li>string 类处理字符串与字符数组不同，处理字符串默认按行读取</li>
+<li>声明一个string对象，但是不初始化那么系统默认为零，但是会随着后面的输入而自动变化</li>
+<li>输出string的类方法（非&gt;&gt;）getline(cin,stringob);</li>
+</ul>
+<p>8.<strong>c++结构体的特性</strong></p>
+<ul>
+<li>c++中结构体可以有成员函数</li>
+<li><em>c++结构体初始化</em> inflatable duck{X,x};,如果花括号为空，那么所以成员都会被初始化为0 </li>
+</ul>
+<p>9.<strong>位字段</strong></p>
+<ul>
+<li>在结构体正常的声明后面加：和数字，数字代表这个变量所被允许使用的位数</li>
+</ul>
+<p>10.<strong>共用体</strong></p>
+<ul>
+<li>共用体除了关键字位union，其他声明与结构体相同，不同的是共用体共用地址，所以共用体大小取决与最大那一给变量，（通过使用共用体的不同变量完成类型转换，<em>名共用体所有成员成为相同地址的变量，相当于同一地址的不同名称（但是与类型有光）</em></li>
+</ul>
+<p>11.<strong>枚举</strong></p>
+<ul>
+<li>枚举只有赋值=运算符，不存在+，++等</li>
+<li>枚举只能被赋予花括号中声明的值（才有意义），但是可以通过在适当范围的整数强制转换位对应的枚举值，不在范围的被转换的结果是未知的</li>
+<li>枚举值只能是<strong>整数（<code>long long</code> <code>long</code> <code>int</code>均可）</strong>，并且没显式指定的枚举值比前面的大1，如果都没指定，那么第一个默认0，<strong>枚举值可以显式指定为相同</strong></li>
+</ul>
+<p>12.<strong>指针</strong></p>
+<ul>
+<li>c++中int* 是一种复合类型，表示int类型的指针</li>
+<li>int<em> p1,p2`，**</em>p1是指针，p2是int变量<em>**！对于c++中每个指针变量都需要一个</em></li>
+</ul>
+<p>13.<strong>new与delete</strong></p>
+<ul>
+<li>new（凡是动态开辟的变量）存在堆中，int，double等在堆栈</li>
+<li><em>new开辟的动态空间存class对象才会自动调用构造函数和析构函数</em></li>
+<li><strong>delete删除的内存并不会删除指针，所以需要将指针重新指向</strong></li>
+<li>对已经delete的空间delete将会产生不确定的结果</li>
+<li>删除多个连续空间，用delete[] p;</li>
+</ul>
+<p>13.<strong>数组名与指针的区别</strong></p>
+<ul>
+<li>指针可以指向其他地方，但是数组名不能，代表一个常量</li>
+<li>sizeof算指针是指针的长度（1），但是算数组名是数组长度</li>
+<li>int arr[10] &amp;arr和arr在值上是相同的,都是地址的值，但是arr等价于&amp;arr[0],这代表对arr+1每次加4，指向数组下一个int元素，但是&amp;arr+1（arr+10）,一次加的数组长度</li>
+<li>给指针赋值相当于给给指针一个地址，两个指针指向同一块地址</li>
+</ul>
+<p>14.<strong>指针与字符串</strong></p>
+<ul>
+<li>字符串常量相当于其首地址</li>
+<li>c++并不能保证字符串字面值被唯一的存储，也就是说相同字面值的字符串，可能有多个副本也可能一个</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/java编程思想（第二章）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2161,204 +2467,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/JAVA安装及环境配置（window10系统-jdk8-0）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tanghao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赤羽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/26/JAVA安装及环境配置（window10系统-jdk8-0）/" class="post-title-link" itemprop="url">JAVA安装及环境配置（window10系统+jdk8.0）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-26 23:01:00" itemprop="dateCreated datePublished" datetime="2019-04-26T23:01:00+08:00">2019-04-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-11 18:21:12" itemprop="dateModified" datetime="2019-05-11T18:21:12+08:00">2019-05-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ol>
-<li>jdk的下载</li>
-</ol>
-<p><img src="\images\pasted-1.png" alt><br><a href="http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;pn=Eclipse%20Installer&amp;pu=http://wiki.eclipse.org/Eclipse_Installer&amp;pi=http://download.eclipse.org/oomph/jre/128x128.png根据对应的电脑版本安装即可" target="_blank" rel="noopener">http://download.eclipse.org/oomph/jre/?vm=1_1_7_0_64_0&amp;pn=Eclipse%20Installer&amp;pu=http://wiki.eclipse.org/Eclipse_Installer&amp;pi=http://download.eclipse.org/oomph/jre/128x128.png根据对应的电脑版本安装即可</a><br>    2.jdk的安装</p>
-<pre><code>* 在D盘新建一个java文件夹，在java文件下新建两个文件夹，分别命名为jdk和jre.
-* 开始点击安装程序， 安装时有两次选择路径的机会，第一次是让你选择jdk安装路径，选择为D:\java\jdk，第二次是让你选择jre的安装路径，选择为D:\java\jre
-* .安装完成后，进行环境变量的配置，计算机右击属性，-高级系统设置-环境变量-选择下边的系统变量，如果桌面上没有 我的电脑 打开文件夹，点击那里的我的电脑
-* 新建
-* 变量名：JAVA_HOME
-* 变量值：D:\java\jdk（没有分号）
-* 变量名：ClassPath
-* 变量值：.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;
-* 查看是否有path变量，如果没有创建一个，然后添加 C:\ProgramData\Oracle\Java\javapath;
-* 应为Javac和java不在同一个包里，所以添加变量
-* D:\java\jdk\bin
-* D:\java\jre\bin
-* 按win+R，输入cmd,打开命令提示符，输入Java，javac，Java-version
-* 均能运行表示Java安装成功，
-* 返回最开始的网站，下载eclipse编译器（idle位数的选择取决于你jdk的版本是32还是64），既可以写Java程序了，无需安装，解压即可。
-</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2407,7 +2515,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
