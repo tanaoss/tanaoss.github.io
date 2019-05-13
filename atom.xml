@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-13T05:36:01.081Z</updated>
+  <updated>2019-05-13T06:54:20.373Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++STL</title>
+    <link href="http://yoursite.com/2019/05/13/c-STL/"/>
+    <id>http://yoursite.com/2019/05/13/c-STL/</id>
+    <published>2019-05-13T06:45:00.000Z</published>
+    <updated>2019-05-13T06:54:20.373Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="c-STL常用容器（1）"><a href="#c-STL常用容器（1）" class="headerlink" title="c++STL常用容器（1）"></a>c++STL常用容器（1）</h3><p>1 .<strong>迭代器（iterator）</strong></p><ul><li>stl几乎所有容器都支持迭代器</li><li>迭代器的使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    vector&lt;int&gt; nums(10,1);</span><br><span class="line">    vector&lt;int&gt;::iterator it=nums.begain();//迭代器的声明，理解为 vector类中声明有iterator成员即可，还有begin（）方法，返回对应的迭代器即可，还有end（）方法，返回最后一个位置</span><br><span class="line">    cout&lt;&lt;*it;//输出迭代器此时指向的位置的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ul><p>2.<strong>数组转置（<algorithm>）</algorithm></strong></p><ul><li>reverse(v.begin(),v.end()); //数组转置</li></ul><p>3 <strong>排序（<algorithm> sort）</algorithm></strong></p><ul><li>sort(nums.begin(),nums.end()，function);//(默认是按升序排列,即从小到大)function参数选择排序方式，根据自己的选择来排序，比如，你希望一个二维数组可以根据第一维的大小来排序，就可以自己定义一个函数,是通过返回值的类型来判断谁排在前面</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">bool complare(int a,int b)//根据数组类型选择传入参数，如果是原数组是vector&lt;vector&lt;int&gt;&gt;,则写vector&lt;int&gt;</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">     return a&gt;b;//值大的排前面</span><br><span class="line">     //return S.id&lt;S1.id(id值小的结构体排前面)</span><br><span class="line"></span><br><span class="line">&#125;//从大到小排序，（返回值为true时的顺序为排序顺序）</span><br></pre></td></tr></table></figure><p>3.<strong>字符串</strong></p><ul><li>删除 （erase clear）<br> +s.erase(it + 1,it + 4); //删除s[1]-s[3]**注意：不删除最后一个位置，并且使用的是迭代器it<ul><li>clear（）//删除全部</li><li>s.erase(it+3);//删除s[3]</li></ul></li><li>查找（find）<ul><li>find找到string里面第一个要找到元素（char或者串），找到返回数组下标，找不到返回-1</li><li>int n = s1.find(‘e’);//fing和erase都是对象的方法</li><li>s1.find(‘h’,2); //从第二元素开始找<ul><li><strong>字符串与数字之间的相互转换</strong><br>+</li></ul></li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//字符串转数字（c++风格）定义于头文件 &lt;string&gt; </span><br><span class="line">std::stod(string);//将字符串转换成double类型的</span><br><span class="line">std::stoi(string);//将字符串转换成int类型的</span><br><span class="line">std::stoll(string);//将字符串转换成long long类型的</span><br><span class="line"></span><br><span class="line">//数字转字符串，对于浮点型，不稳定</span><br><span class="line">std::to_string(num]);//将字符串变成数字、、对于浮点类型， std::to_string 可能产生不期待的结果，因为返回的字符串中的有效位数能为零，见示例。double f4 = 1e-40;</span><br><span class="line">std::string f_str4 = std::to_string(f4); // 注意：返回 &quot;0.000000&quot;</span><br><span class="line">double f5 = 123456789;</span><br><span class="line">std::string f_str5 = std::to_string(f5);</span><br><span class="line">to_string: 123456789.000000</span><br><span class="line"></span><br><span class="line">//c语言风格 （stdio.h）</span><br><span class="line">//使用sprintf(char*, &quot;%.3f&quot;,num);</span><br><span class="line">//数字变字符串 </span><br><span class="line">//如果成功，则返回写入的字符总数，不包括字符串追加在字符串末尾的空字符。如果失败，则返回一个负数。</span><br><span class="line">        char a[10]=&#123;0,0,0,&apos;\0&apos;&#125;;</span><br><span class="line">        float t=(float)sum/1000;</span><br><span class="line">        sprintf(a, &quot;%.3f&quot;,t);</span><br><span class="line">        //同理还有scanf</span><br></pre></td></tr></table></figure><ol start="4"><li><strong>字符数组与字符串的相互转换</strong></li></ol><ul><li>字符数组转字符串</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line"></span><br><span class="line">char a[10]=&quot;123456789&quot;;</span><br><span class="line"></span><br><span class="line">string s(&amp;a[0],&amp;a[9]);///起始位置 结束长度位置 +1</span><br><span class="line"></span><br><span class="line">cout&lt;&lt;s&lt;&lt;endl;//可以更换数字下标运行看看</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>字符串转字符数组</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#include&lt;bits/stdc++.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line"></span><br><span class="line">string s=&quot;0123456789&quot;;</span><br><span class="line"></span><br><span class="line">char op[15];</span><br><span class="line"></span><br><span class="line">strncpy(op,s.c_str(),s.length()+1);///s.c_str() 字符强制转化为字符串函数</span><br><span class="line"></span><br><span class="line">///长度必须加1，\0还占一个位置</span><br><span class="line"></span><br><span class="line">for(int i=0;op[i];i++)</span><br><span class="line"></span><br><span class="line">cout&lt;&lt;op[i]&lt;&lt;&quot; &quot;;</span><br><span class="line"></span><br><span class="line">      printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;c-STL常用容器（1）&quot;&gt;&lt;a href=&quot;#c-STL常用容器（1）&quot; class=&quot;headerlink&quot; title=&quot;c++STL常用容器（1）&quot;&gt;&lt;/a&gt;c++STL常用容器（1）&lt;/h3&gt;&lt;p&gt;1 .&lt;strong&gt;迭代器（iterator）&lt;/st
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/"/>
+    
+      <category term="STL" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/STL/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="stl" scheme="http://yoursite.com/tags/stl/"/>
+    
+  </entry>
   
   <entry>
     <title>c++ Primer Plus(第四章）</title>
