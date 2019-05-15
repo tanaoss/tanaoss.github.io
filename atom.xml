@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-13T12:13:16.878Z</updated>
+  <updated>2019-05-15T10:30:37.941Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++ Primer Plus (第五章)</title>
+    <link href="http://yoursite.com/2019/05/15/c-Primer-Plus-%E7%AC%AC%E4%BA%94%E7%AB%A0/"/>
+    <id>http://yoursite.com/2019/05/15/c-Primer-Plus-第五章/</id>
+    <published>2019-05-15T10:29:00.000Z</published>
+    <updated>2019-05-15T10:30:37.941Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>1.<strong>for循环</strong></p><ul><li>for循环是先判断再执行</li><li>测试语句为空，默认为true</li><li>c++11新增了基于范围的for循环，即<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">double p[5];</span><br><span class="line">for(double x:p)</span><br><span class="line">cout&lt;&lt;x&lt;&lt;endl;</span><br></pre></td></tr></table></figure></li></ul><ol start="2"><li><strong>cout输出bool</strong></li></ol><ul><li><strong><em>&lt;&lt;(输出)的运算优先级比运算符高，所以如果希望输出运算后的值，最好用括号括起来</em></strong></li><li>c++会把bool值转换位int ，如果希望为bool最好前面加上<br><code>cout.setf(ios_base::boolalpha)</code></li><li>循环体执行完成以后才会对表达式进行更新，即执行for循环中第三条语句</li></ul><p>3.<strong>字符串比较</strong></p><ul><li><p>C语言风格：，由于常量字符串是地址，所以用直接比较是错的，应该使用strcmp函数</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">char a[8]=&quot;world&quot;;</span><br><span class="line">if(a==&quot;world&quot;)//all false,</span><br><span class="line">//应该改为if(strcmp(a,&quot;world&quot;))</span><br><span class="line">// 如果strcmp比较出字符串不等返回1，相等为0</span><br></pre></td></tr></table></figure></li><li><p>c+风格如果要比较的都是string对象（或者至少左边是一个string对象），直接用==判断</p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;第五章&quot;&gt;&lt;a href=&quot;#第五章&quot; class=&quot;headerlink&quot; title=&quot;第五章&quot;&gt;&lt;/a&gt;第五章&lt;/h3&gt;&lt;p&gt;1.&lt;strong&gt;for循环&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;for循环是先判断再执行&lt;/li&gt;
+&lt;li&gt;测试语句为空
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/"/>
+    
+      <category term="c++ Primer Plus" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/c-Primer-Plus/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++ Primer Plus" scheme="http://yoursite.com/tags/c-Primer-Plus/"/>
+    
+  </entry>
   
   <entry>
     <title>Java编程思想（第三章）</title>
