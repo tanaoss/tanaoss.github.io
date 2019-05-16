@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-15T10:30:37.941Z</updated>
+  <updated>2019-05-16T03:33:24.825Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,68 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title> c++文件读取中文乱码</title>
+    <link href="http://yoursite.com/2019/05/16/c-%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    <id>http://yoursite.com/2019/05/16/c-文件读取中文乱码/</id>
+    <published>2019-05-16T03:32:00.000Z</published>
+    <updated>2019-05-16T03:33:24.825Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="c-文件读取中文乱码"><a href="#c-文件读取中文乱码" class="headerlink" title="c++文件读取中文乱码"></a>c++文件读取中文乱码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;cstdio&gt;</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">#include&lt;algorithm&gt;</span><br><span class="line">#include&lt;vector&gt;</span><br><span class="line">#include&lt;map&gt;</span><br><span class="line">#include&lt;cstring&gt;</span><br><span class="line">#include&lt;fstream&gt;</span><br><span class="line">#include &lt;Windows.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">string UTF8ToGB(const char* str)</span><br><span class="line">&#123;</span><br><span class="line">     string result;</span><br><span class="line">     WCHAR *strSrc;</span><br><span class="line">     LPSTR szRes;</span><br><span class="line"></span><br><span class="line">     //获得临时变量的大小</span><br><span class="line">     int i = MultiByteToWideChar(CP_UTF8, 0, str, -1, NULL, 0);</span><br><span class="line">     strSrc = new WCHAR[i+1];</span><br><span class="line">     MultiByteToWideChar(CP_UTF8, 0, str, -1, strSrc, i);</span><br><span class="line"></span><br><span class="line">     //获得临时变量的大小</span><br><span class="line">     i = WideCharToMultiByte(CP_ACP, 0, strSrc, -1, NULL, 0, NULL, NULL);</span><br><span class="line">     szRes = new CHAR[i+1];</span><br><span class="line">     WideCharToMultiByte(CP_ACP, 0, strSrc, -1, szRes, i, NULL, NULL);</span><br><span class="line"></span><br><span class="line">     result = szRes;</span><br><span class="line">     delete []strSrc;</span><br><span class="line">     delete []szRes;</span><br><span class="line"></span><br><span class="line">     return result;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    ifstream inFile;//输出类</span><br><span class="line">    inFile.open(&quot;text.txt&quot;);//&lt;&lt;,setf(),endl都可以用到这个对象</span><br><span class="line">    char line[80];</span><br><span class="line">    inFile.getline(line,80);</span><br><span class="line">string    msg=UTF8ToGB(line);</span><br><span class="line">    cout&lt;&lt;msg;</span><br><span class="line">    inFile.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>参考博文：[<a href="https://blog.csdn.net/zhancf/article/details/49930969" target="_blank" rel="noopener">https://blog.csdn.net/zhancf/article/details/49930969</a><br>]</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;c-文件读取中文乱码&quot;&gt;&lt;a href=&quot;#c-文件读取中文乱码&quot; class=&quot;headerlink&quot; title=&quot;c++文件读取中文乱码&quot;&gt;&lt;/a&gt;c++文件读取中文乱码&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ Primer Plus (第六章)</title>
+    <link href="http://yoursite.com/2019/05/16/c-Primer-Plus-%E7%AC%AC%E5%85%AD%E7%AB%A0/"/>
+    <id>http://yoursite.com/2019/05/16/c-Primer-Plus-第六章/</id>
+    <published>2019-05-16T03:31:00.000Z</published>
+    <updated>2019-05-16T03:32:29.933Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h3><ol><li><strong>逻辑运算符细节</strong></li></ol><ul><li>c++ or 和 and 运算符低于 关系运算符，但是非（！）优先级高于关系运算符，所以要<strong>对比较结果取反,需要加括号</strong></li><li>c++ &amp;&amp;,|| ,~的另一种表达方式 对应关系为 and,or,not(他们均为c++保留字，c++不需要头文件使用他们，c需要)</li></ul><p>2.<strong>简单的文件处理</strong></p><ul><li>使用cin进士输入时，程序将输入视为一系列字节，即输入一开始都是字符数据，然后再根据类型转换</li><li>写入到文本文件<pre><code>+ 必须包含fstream+ 需要声明 ofstream 对象+ 需要绑定文件，open()方法+ 绑定后文件对象可以向cout那样使用</code></pre></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    ofstream outFile;//输出类</span><br><span class="line">    outFile.open(&quot;text.txt&quot;);//&lt;&lt;,setf(),endl都可以用到这个对象</span><br><span class="line">    outFile&lt;&lt;&quot;你哈&quot;;</span><br><span class="line">    outFile.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>读取文件<ul><li>必须包含fstream</li><li>需要声明 ifstream 对象</li><li>需要绑定文件，open()方法</li><li>绑定后文件对象可以向cin那样使用</li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    ifstream inFile;//输入类</span><br><span class="line">    inFile.open(&quot;text.txt&quot;);</span><br><span class="line">    char line[80];</span><br><span class="line">    inFile.getline(line,80);</span><br><span class="line">    cout&lt;&lt;line;//需要ANSI编码才能正确读写</span><br><span class="line">    inFile.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;第六章&quot;&gt;&lt;a href=&quot;#第六章&quot; class=&quot;headerlink&quot; title=&quot;第六章&quot;&gt;&lt;/a&gt;第六章&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;逻辑运算符细节&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;c++ or 和 and 运算
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/"/>
+    
+      <category term="c++ Primer Plus" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/c-Primer-Plus/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++ Primer Plus" scheme="http://yoursite.com/tags/c-Primer-Plus/"/>
+    
+  </entry>
   
   <entry>
     <title>c++ Primer Plus (第五章)</title>
