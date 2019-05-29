@@ -343,6 +343,256 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/c-Primer-Plus-第三章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tanghao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赤羽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/10/c-Primer-Plus-第三章/" class="post-title-link" itemprop="url">c++ Primer Plus(第三章)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-10 15:14:00 / 修改时间：15:37:02" itemprop="dateCreated datePublished" datetime="2019-05-10T15:14:00+08:00">2019-05-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/c-Primer-Plus/" itemprop="url" rel="index"><span itemprop="name">c++ Primer Plus</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h2><p>1.<strong>变量名</strong></p>
+<ul>
+<li>c99（标准c）中只保证名称的前63个字符有意义，前63个字符相同的名称被认为是相同的，c++对名字长度没有限制（但某些平台会有限制）</li>
+<li>c++中以两个下划线或下划线和大写字母打头的名称被保留给实现（编译器及其使用的资源）使用。以一个下划线开头的被保留给实现，用作全局标识符（例：如果使用_time_s,_Doun等变量名，编译器不会报错，但会导致行为不确定性）</li>
+</ul>
+<p>2.<strong>变量长度</strong><br>+<code>short</code>,<code>long</code>,<code>int</code>等并不总是保证16，32，32.但是c++标准保证了<code>最小长度</code>，即 short 至少16位，int与short至少是一样长，long至少32为，且至少与int一样长，long long至少64位，且至少和long一样长</p>
+<p>3.<strong>sizeof运算符</strong></p>
+<ul>
+<li>对于sizeof运算符（算内存）对类型名必须要放入括号中，但是对  <strong><em>变量名，括号是可选的</em></strong></li>
+</ul>
+<p>4.<strong>头文件climits（极限数据头文件）</strong></p>
+<ul>
+<li>头文件climit 定义了符号常量来表示类型的限制 比如<code>INT_MAX</code>表示int的最大值，比较常用的有 INT_MIN(int最小值) ，UNIT_MAX(无符号int最大值),LLNOG_MAX(long long最大值)，ULLNOG_MAX(无符号long long最大值)等</li>
+</ul>
+<p>5.<strong>c++变量初始化</strong></p>
+<ul>
+<li>c++还包含一种与C语言不同的初始方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a=10;</span><br><span class="line">int b(100);//The New</span><br><span class="line">int c&#123;12&#125;;</span><br><span class="line">int v=&#123;12&#125;;</span><br><span class="line">int e=&#123;&#125;;//e=0</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>6.<strong>无符号类型</strong></p>
+<ul>
+<li>unsigned 本身是 unsigned int的缩写</li>
+</ul>
+<p>7.<strong>c++记数方式</strong></p>
+<ul>
+<li>c++能够和C语言一样，以8，10，16进制计数，如果第一位是1-9，那么基数是10，如果第一位是0，第二位是1~7，基数是7，如果前两位是0x或者0X，那么是十六进制；</li>
+</ul>
+<p>8.<strong>c++常量</strong></p>
+<ul>
+<li><code>cout&lt;&lt;12;</code>c++除非有理由（数太大或者后缀）存储为其他类型，则一般存储为int</li>
+<li>后缀LU，UL均表示无符号整数，与顺序无关</li>
+</ul>
+<p>8.<strong>基于字符的8进制与16进制转义</strong></p>
+<ul>
+<li>Ctr+Z的ASII码为26，对应八进制为032，16进制为0x1a，，用单引号括起，即对应编码，如’\037’</li>
+</ul>
+<p>9 <strong>bool</strong></p>
+<ul>
+<li>c++中，任何数字值和指针值都可以被转换为（隐式）为bool，非零为true，零为false。而bool值true转换为1，false为0</li>
+</ul>
+<p>10.<strong>浮点数</strong></p>
+<ul>
+<li>浮点数可以表示为234.0等价于2.34E（e）2(表示2.34与10^2相乘的结果)，同时<strong>数字必须紧挨，不能有空格</strong>，比如 2.34 E2是错误的</li>
+</ul>
+<p>11.<strong>浮点数的输出</strong></p>
+<ul>
+<li>cout输出一般会省去浮点数结尾的零，使用<code>cout.self(ios_base::fixed,ios_base::floatfield);</code>可以覆盖掉</li>
+</ul>
+<p>12.<strong>浮点数常量</strong></p>
+<ul>
+<li>long double的后缀是 l或者L，float是f或者F，c++默认是double</li>
+</ul>
+<p>13.<strong>c++求模</strong></p>
+<ul>
+<li>如果两操作数有一个负数，那么运算满足 （a/b)*b+a%b=a;</li>
+<li>两操作数都因该是整数，浮点数会编译错误</li>
+</ul>
+<ol start="14">
+<li><strong>浮点数精度问题</strong></li>
+</ol>
+<ul>
+<li>float保证6位精度，double保证15位精度</li>
+</ul>
+<p>15.<strong>类型转换</strong></p>
+<ul>
+<li>浮点数转换成整数不仅仅可能小数丢失，而且浮点数的整数值也可能超过int范围</li>
+<li>c++还可以使用{}来初始化，这种初始化不允许出现精度丢失现象，比如浮点数赋予个整形，相同类型或者精度向上提升的的赋值可能被运行，条件是编译器知道会被正确赋值</li>
+</ul>
+<ol start="16">
+<li><strong>c++auto</strong></li>
+</ol>
+<ul>
+<li>在初始化声明中，如果使用auto，而不指定关键字类型，编译器将把变量类型设置为与初始值相同</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">auto n=100;//n is int</span><br><span class="line">auto a= 100.1//a is double</span><br><span class="line">double x=0;/x=0.0 is double</span><br><span class="line">auto y =0;//y=0,y is int</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/c-如果两个在不同头文件如何相互引用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2025,172 +2275,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/博客初创/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tanghao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赤羽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/26/博客初创/" class="post-title-link" itemprop="url">博客初创</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-26 21:29:37 / 修改时间：23:37:57" itemprop="dateCreated datePublished" datetime="2019-04-26T21:29:37+08:00">2019-04-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>第一次写博客，花了不少时间搭建服务器</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2234,7 +2323,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
