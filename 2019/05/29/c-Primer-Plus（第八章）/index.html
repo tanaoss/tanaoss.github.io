@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="赤羽">
 <meta property="og:description" content="第八章1.内联函数  在函数声明前加上inline 在函数定义前加上inline 虽然请求为内联函数，但是不一定编译器使用，比如函数递归或者函数过大  2.引用变量  引用变量需要在声明时定义，否则报错，并且捆绑后，不能解绑，类似与const指针 引用变量作为函数参数传入时候，必须是变量，否则报错，比如f（a+3）;//错误 (f(int &amp;amp;))  3.临时变量，引用参数，const  如">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-29T10:06:38.619Z">
+<meta property="og:updated_time" content="2019-05-29T13:01:50.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++ Primer Plus（第八章）">
 <meta name="twitter:description" content="第八章1.内联函数  在函数声明前加上inline 在函数定义前加上inline 虽然请求为内联函数，但是不一定编译器使用，比如函数递归或者函数过大  2.引用变量  引用变量需要在声明时定义，否则报错，并且捆绑后，不能解绑，类似与const指针 引用变量作为函数参数传入时候，必须是变量，否则报错，比如f（a+3）;//错误 (f(int &amp;amp;))  3.临时变量，引用参数，const  如">
@@ -390,7 +390,7 @@
                 
               
 
-              <time title="创建时间：2019-05-29 18:04:00 / 修改时间：18:06:38" itemprop="dateCreated datePublished" datetime="2019-05-29T18:04:00+08:00">2019-05-29</time>
+              <time title="创建时间：2019-05-29 18:04:00 / 修改时间：21:01:50" itemprop="dateCreated datePublished" datetime="2019-05-29T18:04:00+08:00">2019-05-29</time>
             
 
             
@@ -491,8 +491,7 @@
 </code></pre></li>
 <li><p>函数定义形参有const使函数能够处理const和非const实参，否则只接受非const</p>
 </li>
-<li>c++新增右值引用，这种引用可指向右值（非左值），比如<code>int &amp;&amp; =2.0* j</code> </li>
-<li></li>
+<li>c++新增右值引用，这种引用可指向右值（非左值），比如<code>int &amp;&amp; =2.0* j</code><br>+</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using std::cout;</span><br><span class="line">using std::endl;</span><br><span class="line">int f(const int&amp;);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //int&amp; a=10;不能是字面量</span><br><span class="line">    int j=10;</span><br><span class="line">    //int&amp; a=j*10;不能是表达式</span><br><span class="line">    //long&amp; a=j;新标准c++中非const引用不支持转换</span><br><span class="line">    const long&amp; a=j;</span><br><span class="line">    f(a);</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">int f(const int&amp; a)</span><br><span class="line">&#123;</span><br><span class="line">    int b=a;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>4.<strong>引用做返回值</strong></p>
@@ -523,13 +522,13 @@
 </ul>
 <p>9.<strong>显式具体化与显式实例化</strong></p>
 <ul>
-<li>使用<code>template void f&lt;int&gt;()</code>表示显式告诉编译器实例化具体的函数</li>
+<li>使用<code>template void f&lt;int&gt;()</code>表示显式告诉编译器实例化具体的函数，也是一种声明，但是告诉了编译器，编译器不用再推导，同时，同一文件不能同时显式实例化和具体化同一类型函数，并且某些编译器不支持这一用法</li>
 </ul>
 <p>10.<strong>编译器使用函数的版本</strong></p>
 <ul>
 <li>当有多个模板匹配的时候，编译器会选择一个最佳方式进行匹配，如果不存在，会返回一个二义性的错误</li>
 <li>指向const的指针和数据优先于非const的，非模板函数优先于模板</li>
-<li>两个完全匹配的模板函数，较具体化的模板函数优先 ,即<code>f(T a),f(T * a)</code> 后者会优先匹配</li>
+<li>两个完全匹配的模板函数，较具体化的模板函数优先 ,即<code>f(T a),f(T * a)</code> 后者会优先匹配，偏特化必须是相对于T的，即指明T的一部分特性，T* 指明是指针</li>
 <li>寻找最佳的过程被称之为重载解析</li>
 </ul>
 
