@@ -343,6 +343,282 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/11/java编程思想（第二章）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tanghao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赤羽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/11/java编程思想（第二章）/" class="post-title-link" itemprop="url">java编程思想（第二章）</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-11 18:07:00" itemprop="dateCreated datePublished" datetime="2019-05-11T18:07:00+08:00">2019-05-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-13 20:14:21" itemprop="dateModified" datetime="2019-05-13T20:14:21+08:00">2019-05-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/Java/Java编程思想/" itemprop="url" rel="index"><span itemprop="name">Java编程思想</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p>1.<strong>标识符与对象的关系</strong></p>
+<ul>
+<li>java中一切标识符都是对象的引用而不是对象</li>
+</ul>
+<ol start="2">
+<li><strong>程序运行对象的存储</strong></li>
+</ol>
+<ul>
+<li><em>寄存器</em>：Java中没有类似与c++，c的建议寄存器存储的地方</li>
+<li><em>堆栈</em>：java中某些数据直接存储在堆栈中-特别是对象的引用（标识符），但是对象不存储在其中</li>
+<li><em>堆</em>： 存放所有的Java对象，但是在堆中存储分配和清理可能比在用堆栈更消耗时间</li>
+<li><em>常量存储</em>：通常在程序代码内部，如 <em>字符串池</em></li>
+<li><em>非RAM存储</em>： 不受程序控制，运行时可以存在也可以不存在</li>
+</ul>
+<p>3.<strong>基本类型</strong></p>
+<ul>
+<li>Java与c++一样，对于基本类型（int ，float），创建一个并非是引用的变量，这个变量直接存储值，并放在堆栈中，而不是new</li>
+<li>Java中基本类型的存储空间是固定的，而并不是与硬件架构有关，并且不存在无符号的数值类型，boolean(布尔，与c++的bool)大小没有明确指定，仅仅定义为能够取字面值的true或者false<br><img src="\images\TIM图片20190511165348.png" alt="05.png"></li>
+</ul>
+<p>+基本类型具有包装器类，使堆中可以创建一个非基本对象，来表示对应的基本类型，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//基本类型与非基本对象表示的基本类型的转换</span><br><span class="line">char x=&apos;x&apos;;</span><br><span class="line">Character ch =new Character(x);//Character ch =new Character(&apos;x&apos;);</span><br><span class="line">char c=ch//反向转换</span><br></pre></td></tr></table></figure></p>
+<ol start="4">
+<li><strong>高精度数字</strong></li>
+</ol>
+<ul>
+<li>java提供两个用来高精度计算的类 BigInteger BigDeclmal,包装类但不存在基本类型对应，运算速度满但是精度高</li>
+</ul>
+<p>5.<strong>java中的数组</strong></p>
+<ul>
+<li>java确保数组会被初始化，而且不能在范围之外被访问</li>
+<li>创建一个数组对象时，实际创建的是一个引用数组，并将每个数组初始化为null</li>
+<li>基本类型数组会被初始化为0</li>
+</ul>
+<p>6.<strong>作用域</strong></p>
+<ul>
+<li>Java与c++类似，；代表语句结束，空白符不影响代码执行</li>
+<li><p>Java不允许较大作用域的变量被较小的隐藏 ，即</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    int x=12;</span><br><span class="line">    &#123;</span><br><span class="line">        int x=96;//c++中是对的，但是Java是错的</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java对象的生命周期可以存在作用域之外，但引用的作用域会消失，事实证明：new出来的对象，只要你需要就会一直保存下去（Java垃圾回收机制会处理掉那些不需要的对象）</p>
+</li>
+</ul>
+<p>7.<strong>成员函数与数据成员</strong></p>
+<ul>
+<li>Java中数据成员如果是某个对象的引用，那么需要正确将其初始化，与实际对象相关联，否则报错</li>
+<li>如果数据成员是基本数据类型，那么Java会为其初始化，boolean初始化为false ，char为’\u0000’(null),其他均为对应的0，比如0f，0L等</li>
+<li>如果是<strong>成员函数中定义的变量，那么Java不为它初始化</strong>,如果程序员不初始化，会报错</li>
+</ul>
+<ol start="8">
+<li><strong>传递过程中的变化</strong></li>
+</ol>
+<ul>
+<li>java在传递过程中通常是传递的引用，除了int 等基本数据类型（<strong>通过堆栈进行函数传递</strong>）</li>
+<li>java无论在何处都会要去强制返回一个正确的返回值</li>
+</ul>
+<p>9.<strong>名字的可见性</strong></p>
+<ul>
+<li>java通过反转域名来保证名字是独一无二的，比如 MindVew.net,则应用工具库被命名为net.MindView.XX.反转后，句点表示划分</li>
+<li>java中，包名均为小写</li>
+</ul>
+<ol start="10">
+<li><strong>类的调用</strong></li>
+</ol>
+<ul>
+<li>通过import导入其他类，通过通配符*导入包中所有类</li>
+</ul>
+<p>11.<strong>static关键字</strong></p>
+<ul>
+<li>通过static关键字声明的事物，不与对象相关联，可以通过类名直接访问，（所有类都共用那一个变量的实际上是同一个存储位置）</li>
+</ul>
+<ol start="12">
+<li><strong>默认包</strong></li>
+</ol>
+<ul>
+<li>java.lang是默认导入每个Java文件，所以可以直接使用</li>
+</ul>
+<p>13<strong>main的参数</strong></p>
+<ul>
+<li>public statcic void main(String[] args)的参数是编译器要求的，即使没有使用，不能删除,这个数组存储命令行参数.</li>
+</ul>
+<p>14.<strong>注释文档</strong></p>
+<ul>
+<li>/**开始，结束与*/,</li>
+<li>三种类型注释文档<ul>
+<li>类注释 位于类定义之前</li>
+<li>域注释 位于域定义之前</li>
+<li>方法注释 位于方法域之前</li>
+</ul>
+</li>
+<li>注释文档能通过javaoc输出</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/10/c-Primer-Plus-第三章/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2095,186 +2371,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/const-char-char-const-char-const的区别问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tanghao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赤羽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/26/const-char-char-const-char-const的区别问题/" class="post-title-link" itemprop="url">const char*, char const*, char*const的区别问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-26 22:19:00" itemprop="dateCreated datePublished" datetime="2019-04-26T22:19:00+08:00">2019-04-26</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-10 15:40:44" itemprop="dateModified" datetime="2019-05-10T15:40:44+08:00">2019-05-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>const char<em>, char const</em>, 两者相同。指针指向的值是常量，不允许变。指针不是常量，它可以先指向a, 也可以变成再指向b（例如允许 p=a;p=b;)。<br>char*const，指针是常量，一旦初始化指向了a, 则不允许改变成指向b。指针指向的值可以变（例如允许：p[1]=’O’;）。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2323,7 +2419,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2339,24 +2435,6 @@
                     
                   
                     
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -2427,7 +2505,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

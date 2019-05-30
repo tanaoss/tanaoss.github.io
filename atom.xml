@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-05-29T13:01:50.362Z</updated>
+  <updated>2019-05-30T15:00:55.870Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++的名称修饰问题</title>
+    <link href="http://yoursite.com/2019/05/30/c-%E7%9A%84%E5%90%8D%E7%A7%B0%E4%BF%AE%E9%A5%B0%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/05/30/c-的名称修饰问题/</id>
+    <published>2019-05-30T15:00:00.000Z</published>
+    <updated>2019-05-30T15:00:55.870Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="c-的名称修饰问题"><a href="#c-的名称修饰问题" class="headerlink" title="c++的名称修饰问题"></a>c++的名称修饰问题</h3><p>比如下面的例子，c++会使用为这些同名但是实际不同的函数打上签名信息编码（名称修饰），但是c++编程语言没有对名称修饰方案做出标准化规定，所以不同编译器有不同的方式修饰，导致不同编译器产生的.o文件不能一起链接</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int  f (void) &#123; return 1; &#125;</span><br><span class="line">int  f (int)  &#123; return 0; &#125;</span><br><span class="line">void g (void) &#123; int i = f(), j = f(0); &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;c-的名称修饰问题&quot;&gt;&lt;a href=&quot;#c-的名称修饰问题&quot; class=&quot;headerlink&quot; title=&quot;c++的名称修饰问题&quot;&gt;&lt;/a&gt;c++的名称修饰问题&lt;/h3&gt;&lt;p&gt;比如下面的例子，c++会使用为这些同名但是实际不同的函数打上签名信息编码（名称修
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="链接问题" scheme="http://yoursite.com/tags/%E9%93%BE%E6%8E%A5%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
   
   <entry>
     <title>c++ Primer Plus（第八章）</title>
