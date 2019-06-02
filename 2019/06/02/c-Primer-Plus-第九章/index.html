@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第九章 内存模型与命名空间 程序的三部分  头文件 ：包含结构声明和使用这些结构的函数的原型 源代码文件：包含与结构相关的函数的代码或者包含调用与结构相关的函数的代码,所以在main中只用包含头文件即可。 不要将函数定义或者变量声明放到头文件，因为其他文件如果包含这个头文件并且有定义这个函数，将会导致重复定义 被定义为const的变量可以放到头文件中 自己定义的头文件用”f.h”引用，&amp;lt;&amp;g">
+<meta name="keywords" content="c++,c++ Primer Plus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c++ Primer  Plus(第九章)">
+<meta property="og:url" content="http://yoursite.com/2019/06/02/c-Primer-Plus-第九章/index.html">
+<meta property="og:site_name" content="赤羽">
+<meta property="og:description" content="第九章 内存模型与命名空间 程序的三部分  头文件 ：包含结构声明和使用这些结构的函数的原型 源代码文件：包含与结构相关的函数的代码或者包含调用与结构相关的函数的代码,所以在main中只用包含头文件即可。 不要将函数定义或者变量声明放到头文件，因为其他文件如果包含这个头文件并且有定义这个函数，将会导致重复定义 被定义为const的变量可以放到头文件中 自己定义的头文件用”f.h”引用，&amp;lt;&amp;g">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/pasted-5.png">
+<meta property="og:image" content="http://yoursite.com/images/pasted-3.png">
+<meta property="og:updated_time" content="2019-06-02T11:48:46.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c++ Primer  Plus(第九章)">
+<meta name="twitter:description" content="第九章 内存模型与命名空间 程序的三部分  头文件 ：包含结构声明和使用这些结构的函数的原型 源代码文件：包含与结构相关的函数的代码或者包含调用与结构相关的函数的代码,所以在main中只用包含头文件即可。 不要将函数定义或者变量声明放到头文件，因为其他文件如果包含这个头文件并且有定义这个函数，将会导致重复定义 被定义为const的变量可以放到头文件中 自己定义的头文件用”f.h”引用，&amp;lt;&amp;g">
+<meta name="twitter:image" content="http://yoursite.com/images/pasted-5.png">
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="赤羽" type="application/atom+xml">
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/06/02/c-Primer-Plus-第九章/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>c++ Primer  Plus(第九章) | 赤羽</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">赤羽</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">人生没有白走的路，每一步都算数</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives" rel="section"><i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/02/c-Primer-Plus-第九章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tanghao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赤羽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">c++ Primer  Plus(第九章)
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-02 19:26:00 / 修改时间：19:48:46" itemprop="dateCreated datePublished" datetime="2019-06-02T19:26:00+08:00">2019-06-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/c-Primer-Plus/" itemprop="url" rel="index"><span itemprop="name">c++ Primer Plus</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="第九章-内存模型与命名空间"><a href="#第九章-内存模型与命名空间" class="headerlink" title="第九章 内存模型与命名空间"></a>第九章 内存模型与命名空间</h3><ol>
+<li><p><strong>程序的三部分</strong></p>
+<ul>
+<li>头文件 ：包含结构声明和使用这些结构的函数的原型</li>
+<li>源代码文件：包含与结构相关的函数的代码或者包含调用与结构相关的函数的代码,所以在main中只用包含头文件即可。</li>
+<li>不要将函数定义或者变量声明放到头文件，因为其他文件如果包含这个头文件并且有定义这个函数，将会导致重复定义</li>
+<li>被定义为const的变量可以放到头文件中</li>
+<li>自己定义的头文件用”f.h”引用，&lt;&gt;表示编译器去标准库中找，双引号表示优先正在当前目录找，或者其他目录，取决于编译器</li>
+<li><strong>不要在源代码文件中使用#incldue包含其他源文件，将会导致多重声明</strong><br><img src="\images\pasted-5.png" alt></li>
+<li><strong><em>使用#ifndef XX #definne #endif 并不能保证源文件不被重复包含，只是保证编译器只读这个文件一次，但是如果这个文件本身就有重复定义的情况，比如相互引用，那么依然会出错</em></strong></li>
+</ul>
+<p>2.<strong>多个库的链接问题</strong></p>
+<ul>
+<li>c++标准允许每个编译器设计人员以他认为合适的方式实现名称修饰（参考我的另一篇博客），因此由不同的不同编译器创建的二进制模块很可能无法正确链接（.o）文件。即两个不同的编译器将会为同一个函数生成不同的修饰名称。所以在链接编译模块的时候，请确保所有对象文件或库都是同一个编译器产生的。即.o文件是同一个编译器生成即可</li>
+</ul>
+<p>3.<strong>自动存储持续性</strong></p>
+<p>+自动存储特性：在函数定义中声明的变量（包括函数参数），只在声明的代码块中生效</p>
+<ul>
+<li>c++11中的<code>auto</code>与<code>register</code>与之前的c语言和c++语言不一样。<strong>auto变量表示自动确定变量类型，register表示显式指明这是一个自动变量，不在表示建议编译器使用寄存器</strong></li>
+</ul>
+<p>4.<strong>静态存储</strong></p>
+<ul>
+<li>c++为静态存储持续性变量提供了三种链接性：外部链接性（可在其他文件中访问），内部链接性（只能在当前文件中访问，必须要有包含他的代码才能使用）和无连接性（只能在当前函数或者代码块中访问）。三种方式其都在整个程序的执行期间存在。<strong>如果没有显式的初始化静态变量，编译器默认设置为0（静态数组与结构中每个元素或者成员都设置为0，指针将会被表达为合适类型）</strong></li>
+<li><strong>传统的K&amp;R c不允许初始化自动数组和结构，但允许初始化静态数组与结构，但标准c和c++允许对这两种进行初始化，但是某些旧的编译器可能不支持</strong></li>
+</ul>
+</li>
+</ol>
+<p>5.<strong>static的用法</strong></p>
+<ul>
+<li>用于局部变量声明，以指出变量是无链接性的静态变量，static表示存储持续性，用于代码块外的声明时，static表示内部链接性，而变量已经是静态持续性了，又有人称之为关键字重载。<br><img src="\images\pasted-3.png" alt="upload successful"></li>
+</ul>
+<p>6.<strong>动态初始化</strong></p>
+<ul>
+<li>编译器将在编译后对常量表达式初始化，x=13* 13这种叫常量表达式</li>
+</ul>
+<p>7.<strong>静态持续性，外部链接性</strong></p>
+<ul>
+<li>在每个使用外部变量的文件中，都必须声明它，又应为c++中变量只能声明一次，所以c+为了全局变量在各个文件中使用，提供了两种声明方式，一种定义声明（分配空间），另一种引用声明，表示使用其他文件的变量，引用声明使用关键字extern,<strong>且不进行初始化</strong>,否则声明为定义，分配空间</li>
+<li>如果这个文件中代码块有全局变量重名的局部变量，全局变量将被隐藏，如果要使用全局变量，使用作用域解析符::.比如 ::x表示使用全局的变量而非局部变量</li>
+</ul>
+<p>8.<strong>静态持续性，内部链接性</strong></p>
+<ul>
+<li>statcic限定符将变量连接性限制为内部的，连接性为内部的变量只能在其所属的文件中使用</li>
+<li>静态变量如果与常规外部变量重名，那么静态变量将隐藏外部常规变量，如果同时出现两个外部常规变量，那么将报错</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">l.cpp</span><br><span class="line">int c = 50;</span><br><span class="line"></span><br><span class="line">static int b = 50;</span><br><span class="line"></span><br><span class="line">main.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">extern int c;</span><br><span class="line"></span><br><span class="line">//extern int a;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; &quot;Hello World!\n&quot;;</span><br><span class="line"></span><br><span class="line">       cout &lt;&lt; c &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">       //cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>全局变量只能在.cpp文件定义，并且访问全局变量不需要包含这个全局变量的文件，一旦使用include相当于这个文件被包含，即使用include可以使用另一个文件定义的static全局变量</em></strong></li>
+</ul>
+<p>9.<strong>cv-限定符</strong></p>
+<ul>
+<li>即const,volatile,volatile表示即使程序代码没有对内存单元进行修改，其值也可能变化，目的是改善编译器的优化能力</li>
+</ul>
+<p>10.<strong>mutable</strong></p>
+<ul>
+<li>用mutable来指出即使结构或者类变量为const，其某个成员也可以被修改，。</li>
+</ul>
+<p>11.<strong>const对存储特性的改变</strong></p>
+<ul>
+<li>全局定义的const等价与类似了static关键字，即具有内部链接性，这样定义常量就很方便，即需要常量的文件只需要包含常量头文件即可，不需要担心重复的问题</li>
+<li>如果出于某种原因，希望常量连接性为外部，extern const in s=0;这样声明即可</li>
+</ul>
+<p>12.<strong>函数的链接性</strong></p>
+<ul>
+<li>默认为外部链接性，即所有文件只能有一个同名函数（不包括重载）</li>
+<li>可以使用static关键字改变为内部的</li>
+<li>对于静态函数，如果定义了与库文件同名的，那么编译器优先在自己定义的里面找</li>
+</ul>
+<p>13.<strong>语言的连接性</strong></p>
+<ul>
+<li>由于名称修饰的问题，所有c和c++的同一个库函数的所打上的数字名称可能不一致 需要使用如下 <code>extern &quot;c&quot;void spiff(int)</code> 这样指明是c还是c++</li>
+</ul>
+<p>14.<strong>储存方案与动态分配</strong></p>
+<ul>
+<li>对于内置的类型，比如int，方式为 int  * p=new int(6)</li>
+<li>对于数组 ：int * a=new int[2] {2,3}//c++11</li>
+<li>对于结构体 T* a =new a{….};//c++11</li>
+<li><strong>c++11new失败后返回的是std :: bad_alloc，而不是空指针</strong></li>
+<li>定位new运算符： 需要加头文件<new>,让new分配到指定空间<br>使用方式 p=new(addr) int[6]</new></li>
+</ul>
+<p>13.<strong>名称空间</strong></p>
+<ul>
+<li>使用namespace 关键字定义，但是应该要注意，名称空间中应该有完整的定义和声明</li>
+<li>名称空间可以是全局的，也可以是另一个名称空间的，通常为外部链接性，除非使用了常量字符串</li>
+<li>名称空间是开放的，可以把已有名称加入到自己的名称空间，但是要注意，如果在一个名称空间中使用了using namespace xxx那么如果在外部使用了这个名称的using，那么两个都将是可见的了(可传递)</li>
+<li>匿名的名称空间：链接性为内部的代替方法</li>
+<li>名称空间的添加，使用 和之前一样的 namespace names{xxx}:xxx为要添加的东西</li>
+<li>两个嵌套的名称空间的引用是 names1::name2::val;</li>
+<li>对名称空间起别名的方式 是 namespace m=m_v_F;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">.h文件</span><br><span class="line">#pragma once</span><br><span class="line"></span><br><span class="line">namespace jack</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">       int a=10;//变量的声明和定义应该在一起；</span><br><span class="line"></span><br><span class="line">       int b;</span><br><span class="line"></span><br><span class="line">       int c;</span><br><span class="line"></span><br><span class="line">       void f();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.cpp文件</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">namespace jack</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">       void f()</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">              std::cout &lt;&lt; &quot;s&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main文件</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;name.h&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">       jack::f();</span><br><span class="line"></span><br><span class="line">       std::cout &lt;&lt; jack::a &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; &quot;Hello World!\n&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+            <a href="/tags/c-Primer-Plus/" rel="tag"># c++ Primer Plus</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/30/c-的名称修饰问题/" rel="next" title="c++的名称修饰问题">
+                <i class="fa fa-chevron-left"></i> c++的名称修饰问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/uploads/2.png" alt="tanghao">
+            
+              <p class="site-author-name" itemprop="name">tanghao</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://telescope.ml" title="http://telescope.ml" rel="noopener" target="_blank">telescope</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第九章-内存模型与命名空间"><span class="nav-number">1.</span> <span class="nav-text">第九章 内存模型与命名空间</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">tanghao</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.0</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -343,6 +343,270 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/02/c-Primer-Plus-第九章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="tanghao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/uploads/2.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="赤羽">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/02/c-Primer-Plus-第九章/" class="post-title-link" itemprop="url">c++ Primer  Plus(第九章)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-02 19:26:00 / 修改时间：19:48:46" itemprop="dateCreated datePublished" datetime="2019-06-02T19:26:00+08:00">2019-06-02</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/c-Primer-Plus/" itemprop="url" rel="index"><span itemprop="name">c++ Primer Plus</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="第九章-内存模型与命名空间"><a href="#第九章-内存模型与命名空间" class="headerlink" title="第九章 内存模型与命名空间"></a>第九章 内存模型与命名空间</h3><ol>
+<li><p><strong>程序的三部分</strong></p>
+<ul>
+<li>头文件 ：包含结构声明和使用这些结构的函数的原型</li>
+<li>源代码文件：包含与结构相关的函数的代码或者包含调用与结构相关的函数的代码,所以在main中只用包含头文件即可。</li>
+<li>不要将函数定义或者变量声明放到头文件，因为其他文件如果包含这个头文件并且有定义这个函数，将会导致重复定义</li>
+<li>被定义为const的变量可以放到头文件中</li>
+<li>自己定义的头文件用”f.h”引用，&lt;&gt;表示编译器去标准库中找，双引号表示优先正在当前目录找，或者其他目录，取决于编译器</li>
+<li><strong>不要在源代码文件中使用#incldue包含其他源文件，将会导致多重声明</strong><br><img src="\images\pasted-5.png" alt></li>
+<li><strong><em>使用#ifndef XX #definne #endif 并不能保证源文件不被重复包含，只是保证编译器只读这个文件一次，但是如果这个文件本身就有重复定义的情况，比如相互引用，那么依然会出错</em></strong></li>
+</ul>
+<p>2.<strong>多个库的链接问题</strong></p>
+<ul>
+<li>c++标准允许每个编译器设计人员以他认为合适的方式实现名称修饰（参考我的另一篇博客），因此由不同的不同编译器创建的二进制模块很可能无法正确链接（.o）文件。即两个不同的编译器将会为同一个函数生成不同的修饰名称。所以在链接编译模块的时候，请确保所有对象文件或库都是同一个编译器产生的。即.o文件是同一个编译器生成即可</li>
+</ul>
+<p>3.<strong>自动存储持续性</strong></p>
+<p>+自动存储特性：在函数定义中声明的变量（包括函数参数），只在声明的代码块中生效</p>
+<ul>
+<li>c++11中的<code>auto</code>与<code>register</code>与之前的c语言和c++语言不一样。<strong>auto变量表示自动确定变量类型，register表示显式指明这是一个自动变量，不在表示建议编译器使用寄存器</strong></li>
+</ul>
+<p>4.<strong>静态存储</strong></p>
+<ul>
+<li>c++为静态存储持续性变量提供了三种链接性：外部链接性（可在其他文件中访问），内部链接性（只能在当前文件中访问，必须要有包含他的代码才能使用）和无连接性（只能在当前函数或者代码块中访问）。三种方式其都在整个程序的执行期间存在。<strong>如果没有显式的初始化静态变量，编译器默认设置为0（静态数组与结构中每个元素或者成员都设置为0，指针将会被表达为合适类型）</strong></li>
+<li><strong>传统的K&amp;R c不允许初始化自动数组和结构，但允许初始化静态数组与结构，但标准c和c++允许对这两种进行初始化，但是某些旧的编译器可能不支持</strong></li>
+</ul>
+</li>
+</ol>
+<p>5.<strong>static的用法</strong></p>
+<ul>
+<li>用于局部变量声明，以指出变量是无链接性的静态变量，static表示存储持续性，用于代码块外的声明时，static表示内部链接性，而变量已经是静态持续性了，又有人称之为关键字重载。<br><img src="\images\pasted-3.png" alt="upload successful"></li>
+</ul>
+<p>6.<strong>动态初始化</strong></p>
+<ul>
+<li>编译器将在编译后对常量表达式初始化，x=13* 13这种叫常量表达式</li>
+</ul>
+<p>7.<strong>静态持续性，外部链接性</strong></p>
+<ul>
+<li>在每个使用外部变量的文件中，都必须声明它，又应为c++中变量只能声明一次，所以c+为了全局变量在各个文件中使用，提供了两种声明方式，一种定义声明（分配空间），另一种引用声明，表示使用其他文件的变量，引用声明使用关键字extern,<strong>且不进行初始化</strong>,否则声明为定义，分配空间</li>
+<li>如果这个文件中代码块有全局变量重名的局部变量，全局变量将被隐藏，如果要使用全局变量，使用作用域解析符::.比如 ::x表示使用全局的变量而非局部变量</li>
+</ul>
+<p>8.<strong>静态持续性，内部链接性</strong></p>
+<ul>
+<li>statcic限定符将变量连接性限制为内部的，连接性为内部的变量只能在其所属的文件中使用</li>
+<li>静态变量如果与常规外部变量重名，那么静态变量将隐藏外部常规变量，如果同时出现两个外部常规变量，那么将报错</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">l.cpp</span><br><span class="line">int c = 50;</span><br><span class="line"></span><br><span class="line">static int b = 50;</span><br><span class="line"></span><br><span class="line">main.cpp</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">extern int c;</span><br><span class="line"></span><br><span class="line">//extern int a;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; &quot;Hello World!\n&quot;;</span><br><span class="line"></span><br><span class="line">       cout &lt;&lt; c &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">       //cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong><em>全局变量只能在.cpp文件定义，并且访问全局变量不需要包含这个全局变量的文件，一旦使用include相当于这个文件被包含，即使用include可以使用另一个文件定义的static全局变量</em></strong></li>
+</ul>
+<p>9.<strong>cv-限定符</strong></p>
+<ul>
+<li>即const,volatile,volatile表示即使程序代码没有对内存单元进行修改，其值也可能变化，目的是改善编译器的优化能力</li>
+</ul>
+<p>10.<strong>mutable</strong></p>
+<ul>
+<li>用mutable来指出即使结构或者类变量为const，其某个成员也可以被修改，。</li>
+</ul>
+<p>11.<strong>const对存储特性的改变</strong></p>
+<ul>
+<li>全局定义的const等价与类似了static关键字，即具有内部链接性，这样定义常量就很方便，即需要常量的文件只需要包含常量头文件即可，不需要担心重复的问题</li>
+<li>如果出于某种原因，希望常量连接性为外部，extern const in s=0;这样声明即可</li>
+</ul>
+<p>12.<strong>函数的链接性</strong></p>
+<ul>
+<li>默认为外部链接性，即所有文件只能有一个同名函数（不包括重载）</li>
+<li>可以使用static关键字改变为内部的</li>
+<li>对于静态函数，如果定义了与库文件同名的，那么编译器优先在自己定义的里面找</li>
+</ul>
+<p>13.<strong>语言的连接性</strong></p>
+<ul>
+<li>由于名称修饰的问题，所有c和c++的同一个库函数的所打上的数字名称可能不一致 需要使用如下 <code>extern &quot;c&quot;void spiff(int)</code> 这样指明是c还是c++</li>
+</ul>
+<p>14.<strong>储存方案与动态分配</strong></p>
+<ul>
+<li>对于内置的类型，比如int，方式为 int  * p=new int(6)</li>
+<li>对于数组 ：int * a=new int[2] {2,3}//c++11</li>
+<li>对于结构体 T* a =new a{….};//c++11</li>
+<li><strong>c++11new失败后返回的是std :: bad_alloc，而不是空指针</strong></li>
+<li>定位new运算符： 需要加头文件<new>,让new分配到指定空间<br>使用方式 p=new(addr) int[6]</new></li>
+</ul>
+<p>13.<strong>名称空间</strong></p>
+<ul>
+<li>使用namespace 关键字定义，但是应该要注意，名称空间中应该有完整的定义和声明</li>
+<li>名称空间可以是全局的，也可以是另一个名称空间的，通常为外部链接性，除非使用了常量字符串</li>
+<li>名称空间是开放的，可以把已有名称加入到自己的名称空间，但是要注意，如果在一个名称空间中使用了using namespace xxx那么如果在外部使用了这个名称的using，那么两个都将是可见的了(可传递)</li>
+<li>匿名的名称空间：链接性为内部的代替方法</li>
+<li>名称空间的添加，使用 和之前一样的 namespace names{xxx}:xxx为要添加的东西</li>
+<li>两个嵌套的名称空间的引用是 names1::name2::val;</li>
+<li>对名称空间起别名的方式 是 namespace m=m_v_F;</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">.h文件</span><br><span class="line">#pragma once</span><br><span class="line"></span><br><span class="line">namespace jack</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">       int a=10;//变量的声明和定义应该在一起；</span><br><span class="line"></span><br><span class="line">       int b;</span><br><span class="line"></span><br><span class="line">       int c;</span><br><span class="line"></span><br><span class="line">       void f();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.cpp文件</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">namespace jack</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">       void f()</span><br><span class="line"></span><br><span class="line">       &#123;</span><br><span class="line"></span><br><span class="line">              std::cout &lt;&lt; &quot;s&quot;;</span><br><span class="line"></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">main文件</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;name.h&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">       jack::f();</span><br><span class="line"></span><br><span class="line">       std::cout &lt;&lt; jack::a &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    std::cout &lt;&lt; &quot;Hello World!\n&quot;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/c-的名称修饰问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1527,12 +1791,24 @@
                 
               
 
-              <time title="创建时间：2019-05-15 18:29:00 / 修改时间：18:30:37" itemprop="dateCreated datePublished" datetime="2019-05-15T18:29:00+08:00">2019-05-15</time>
+              <time title="创建时间：2019-05-15 18:29:00" itemprop="dateCreated datePublished" datetime="2019-05-15T18:29:00+08:00">2019-05-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-02 19:25:57" itemprop="dateModified" datetime="2019-06-02T19:25:57+08:00">2019-06-02</time>
               
             
           </span>
@@ -1603,7 +1879,7 @@
             <h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>1.<strong>for循环</strong></p>
 <ul>
 <li>for循环是先判断再执行</li>
-<li>测试语句为空，默认为true</li>
+<li>测试语句为空，默认为true，如果有两个判断条件，那么俩个条件为或，不是并，如果要在外循环使用内循环的循环变量，在外循环定义即可(for(int i=0,j….)for(j=0;)就可以在外部纪录j)</li>
 <li>c++11新增了基于范围的for循环，即<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">double p[5];</span><br><span class="line">for(double x:p)</span><br><span class="line">cout&lt;&lt;x&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -2088,312 +2364,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/13/c-Primer-Plus-第四章）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="tanghao">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/uploads/2.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="赤羽">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/13/c-Primer-Plus-第四章）/" class="post-title-link" itemprop="url">c++ Primer Plus(第四章）</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-13 13:29:00 / 修改时间：13:36:01" itemprop="dateCreated datePublished" datetime="2019-05-13T13:29:00+08:00">2019-05-13</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/" itemprop="url" rel="index"><span itemprop="name">编程语言</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/" itemprop="url" rel="index"><span itemprop="name">c++</span></a></span>
-
-                
-                
-                  ，
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程语言/c/c-Primer-Plus/" itemprop="url" rel="index"><span itemprop="name">c++ Primer Plus</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>1.<strong>数组初始化规则</strong></p>
-<ul>
-<li>数组不能相互赋值，因为数组名本质上是const指针</li>
-<li>数组如果不用花括号进行初始化，那么值是未知的，如果未全部初始化，即花括号元素小于数组大小，那么编译器将会把其他元素全部初始化为0（所以把数组所有元素初始化的方式是显式设置为0）</li>
-<li><strong><em>c++11新规则</em></strong> <ul>
-<li>初始化数组时候，可省略等号，大括号内可以不以不包含元素，系统默认设置为0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int count[10]&#123;&#125;;//元素全部被设置为0，同时这种列表初始化方式不允许，精度丢失的转换</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li><strong>字符串</strong></li>
-</ol>
-<ul>
-<li><p><em>字符串与字符数组</em></p>
-<ul>
-<li>字符数组如果没有显式包含’\0’,那么不是字符串，只是字符数组，反之为字符串（将之当作字符串处理使用一些库函数将出错）</li>
-</ul>
-</li>
-<li><p>c++中允许以下的方式初始化（不必显式包含’\0’）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char [10]=&quot;hello&quot;;//“hello”字符串隐式包含&apos;\0&apos;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>c++输入工具通过键盘输入时，将字符串读入到char数组时，将自动加上结尾的’\0’;</p>
-</li>
-<li><p>以字符串常量初始化数组时，应该保证数组足够，能装下字符串+’\0’</p>
-</li>
-<li><p><em>“S”=’S’+’\0’;</em> 注意与单个字符不一致</p>
-</li>
-<li><p><em>字符常量拼接</em></p>
-<ul>
-<li>事实上，任何两个由空白（空格，制表符和换行符）分隔的字符串常量都将自动拼接为一个<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;&quot;hello world&quot;;</span><br><span class="line">cout&lt;&lt;&quot;hello &quot; &quot;world&quot;;</span><br><span class="line">cout&lt;&lt;&quot;hello&quot;</span><br><span class="line">&quot;world&quot;;</span><br><span class="line">//这三种输出均等价</span><br><span class="line">//应该注意，拼接时不会在连接的字符串中添加空格。第一个字符串的\0将被第二个字符串的第一个字符覆盖</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li><p><strong>字符串cin输入</strong></p>
-<ul>
-<li><code>cin</code>用空白（空格，制表符，换行）作为字符串的结束位置，也就是说，如果使用<code>cin&gt;&gt;str</code>,来为str赋值，那么输入的字符串不能被空白符间隔开来，否则系统将会留下后半部分在队列中，等待下一次输入，同时作为结束标志的换行符会被留在队列</li>
-</ul>
-</li>
-<li><p><strong>读取一行的输入</strong></p>
-<ul>
-<li>基于上面所说的问题，iostream中的类（如<code>cin</code>),提供了一些类成员函数<ul>
-<li>getline（）<ul>
-<li>getline（）函数读取整行，他使用通过回车键来确定输入结尾。调用 <code>cin.getline()</code>.该函数有两个参数，第一个参数用来存储输入行的存贮地址，即数组名。第二个参数是读取字符数（包括\0）,即参数设置为20，那么最多读取19个字符。(<strong><em>在碰到换行符或者到达指定的数目时停止读取,(并且丢弃换行符(丢弃指缓冲区都没),如果是以换行符结束</em></strong>)</li>
-</ul>
-</li>
-<li>get()<ul>
-<li>get()接受参数与工作方式与getline（）相似，但是并不丢弃（<strong>但也不读取，而是留在缓冲区（带参数的get（name，len））</strong>）\n,而是将其留在输入队列。即连续两次读取，第二次读取将会应为读取到\n，而终止</li>
-<li>get（）的重载函数，不带参数的get（）可读取<strong>下一个字符</strong>，即使<strong>是换行符\n</strong>,可以使用这个函数来吸收留在缓冲区的换行符</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cin.get(name,len);//返回一个cin对象</span><br><span class="line">cin.get();</span><br><span class="line">//上面两句等价与 cin.get(name,len).get();</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li><strong>空行和其他问题</strong></li>
-</ol>
-<ul>
-<li>get（）（不是getline（））读取空行后将设置失效位置（failbit）阻断输入，可以使用cin.clear();来恢复<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char s1[20],s2[30],s3[30],s4;</span><br><span class="line">    cin.get(s1,20);</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s2,20);//空行</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s3,20);</span><br><span class="line">    puts(s1);</span><br><span class="line">    puts(s2);</span><br><span class="line">    puts(s3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>程序截屏<br><img src="\images\TIM图片20190511162243.png" alt><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    char s1[20],s2[30],s3[30],s4;</span><br><span class="line">    cin.get(s1,20);</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s2,20);//空行</span><br><span class="line">    cin.clear();//读取空行后，应该立即重新设置，否则get（）无法读取换行符，产生错误</span><br><span class="line">    cin.get();</span><br><span class="line">    cin.get(s3,20);</span><br><span class="line">    puts(s1);</span><br><span class="line">    puts(s2);</span><br><span class="line">    puts(s3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>程序截屏<br><img src="\images\TIM图片20190511162448.png" alt="1dcd7dccec6a39b13e3dd9ce2032c49e.png"></p>
-<ul>
-<li>当输入字符串长于可分配空间，get()和getline（）将把余下的字符留在缓冲区，getline（）还会设置失效位，关闭后面的输入</li>
-</ul>
-<p>6.<strong>String</strong></p>
-<ul>
-<li>c++11允许使用列表初始化字符串和字符数组 string s1={“hello”}</li>
-<li><em>string 的赋值拼接和附加</em><ul>
-<li>string类变量允许使用等号直接赋值，字符数组不行</li>
-<li>string类可是使用+号合并两个字符串，使用+=追加字符串</li>
-<li>string 类 + 等价与 c的strcop（charr1，charr2）：第一个，第二个参数都为数组名，函数的意义是把第二个参数赋值给第一个，但是有可能因为数组长度问题，发生内存错误</li>
-<li>+=等价对于strcat（charr1，charr2）：c++中，第二个可以为字符串常量，<em>如果字符串常量大于数组的，那么不会为数组添加\0,并且剩余部分继续覆盖，可能会覆盖其他程序所需要使用的内存</em></li>
-</ul>
-</li>
-</ul>
-<p>7.<strong>string类i\o</strong></p>
-<ul>
-<li>string 类处理字符串与字符数组不同，处理字符串默认按行读取</li>
-<li>声明一个string对象，但是不初始化那么系统默认为零，但是会随着后面的输入而自动变化</li>
-<li>输出string的类方法（非&gt;&gt;）getline(cin,stringob);</li>
-</ul>
-<p>8.<strong>c++结构体的特性</strong></p>
-<ul>
-<li>c++中结构体可以有成员函数</li>
-<li><em>c++结构体初始化</em> inflatable duck{X,x};,如果花括号为空，那么所以成员都会被初始化为0 </li>
-</ul>
-<p>9.<strong>位字段</strong></p>
-<ul>
-<li>在结构体正常的声明后面加：和数字，数字代表这个变量所被允许使用的位数</li>
-</ul>
-<p>10.<strong>共用体</strong></p>
-<ul>
-<li>共用体除了关键字位union，其他声明与结构体相同，不同的是共用体共用地址，所以共用体大小取决与最大那一给变量，（通过使用共用体的不同变量完成类型转换，<em>名共用体所有成员成为相同地址的变量，相当于同一地址的不同名称（但是与类型有光）</em></li>
-</ul>
-<p>11.<strong>枚举</strong></p>
-<ul>
-<li>枚举只有赋值=运算符，不存在+，++等</li>
-<li>枚举只能被赋予花括号中声明的值（才有意义），但是可以通过在适当范围的整数强制转换位对应的枚举值，不在范围的被转换的结果是未知的</li>
-<li>枚举值只能是<strong>整数（<code>long long</code> <code>long</code> <code>int</code>均可）</strong>，并且没显式指定的枚举值比前面的大1，如果都没指定，那么第一个默认0，<strong>枚举值可以显式指定为相同</strong></li>
-</ul>
-<p>12.<strong>指针</strong></p>
-<ul>
-<li>c++中int* 是一种复合类型，表示int类型的指针</li>
-<li>int<em> p1,p2`，**</em>p1是指针，p2是int变量<em>**！对于c++中每个指针变量都需要一个</em></li>
-</ul>
-<p>13.<strong>new与delete</strong></p>
-<ul>
-<li>new（凡是动态开辟的变量）存在堆中，int，double等在堆栈</li>
-<li><em>new开辟的动态空间存class对象才会自动调用构造函数和析构函数</em></li>
-<li><strong>delete删除的内存并不会删除指针，所以需要将指针重新指向</strong></li>
-<li>对已经delete的空间delete将会产生不确定的结果</li>
-<li>删除多个连续空间，用delete[] p;</li>
-</ul>
-<p>13.<strong>数组名与指针的区别</strong></p>
-<ul>
-<li>指针可以指向其他地方，但是数组名不能，代表一个常量</li>
-<li>sizeof算指针是指针的长度（1），但是算数组名是数组长度</li>
-<li>int arr[10] &amp;arr和arr在值上是相同的,都是地址的值，但是arr等价于&amp;arr[0],这代表对arr+1每次加4，指向数组下一个int元素，但是&amp;arr+1（arr+10）,一次加的数组长度</li>
-<li>给指针赋值相当于给给指针一个地址，两个指针指向同一块地址</li>
-</ul>
-<p>14.<strong>指针与字符串</strong></p>
-<ul>
-<li>字符串常量相当于其首地址</li>
-<li>c++并不能保证字符串字面值被唯一的存储，也就是说相同字面值的字符串，可能有多个副本也可能一个</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2442,7 +2412,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
