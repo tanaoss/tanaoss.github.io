@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-06-02T11:48:46.642Z</updated>
+  <updated>2019-06-03T11:15:44.400Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>c++ Primer Plus （第十章）</title>
+    <link href="http://yoursite.com/2019/06/03/c-Primer/"/>
+    <id>http://yoursite.com/2019/06/03/c-Primer/</id>
+    <published>2019-06-03T11:14:00.000Z</published>
+    <updated>2019-06-03T11:15:44.400Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h3><p>1.<strong>实现类成员函数</strong></p><ul><li>使用域解析符 ：：void Stock::update(double price)</li><li>方法成员才能访问私有成员或者友元函数</li></ul><p>2.<strong>内联方法</strong></p><ul><li>其定义位于类声明中的函数都将自动成为内联函数，或者在类外定义，使用inluine 即 inline void Stock::update()</li></ul><p>3.<strong>默认构造函数</strong></p><ul><li>只有没有自己定义任何构造函数，c++才会定义一个默认的空的构造函数</li><li>对于声明的头文件，最好使用 #ifndefine XXX #define XX #endif来防止被重复包含</li></ul><ol start="4"><li><strong>c++定义对象的语法</strong></li></ol><ul><li><code>Stock stock1(&quot;maria&quot;);</code></li></ul><p>5.<strong>如何在dos窗口关闭之前看到析构函数的打印</strong></p><ul><li>将整个代码块用大括号括起来，减少对象的生命期</li></ul><p>6.<strong>如何定义比较两个成员的成员函数</strong></p><ul><li><code>const Stock &amp;topval(const Stock &amp;s)const</code> topval为Stock的成员函数，，参数为显式的对象引用，还有个自身隐式的对象引用，参数表里面的const表示这是一个const对象，最后的一个const表示不会修改被隐式访问的对象，最开始那个const表示是因为两个引用都是const引用，所以返回const的引用</li><li>重载运算符</li></ul><p>7.<strong>对象数组</strong></p><ul><li>Stock my[10];这种方式必须要有一个没有参数的构造函数，c++将会调用这个构造函数</li><li>使用花括号来初始化数组 比如(对于花括号中没有说明的对象，将使用默认的构造函数即无参数的构造函数   )</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Stock my[3]&#123;</span><br><span class="line">Stock(&quot;a&quot;),</span><br><span class="line">Stoc(&quot;b&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>8.<strong>作用域为类的产量</strong></p><ul><li><p>在c++类中，使用const int a=10;这种方法来创建常量是错误的。因为声明类并没有开辟空间，所有定义常量的方法有量<br>  1.在类中声明一个枚举，类声明的枚举作用域为整个类，这种方式声明枚举并不会创建数据成员，也就是所有对象都不包含枚举。枚举只是定义一个符号名称，作用域中的代码遇到这个名称·1就将其代替为对应的常量 enum{Mounth=12}</p><ol start="2"><li>使用static const int a=10;</li></ol><p>9.<strong>作用域内枚举</strong></p><ul><li>enum <em>class</em> egg{Small};这样的类枚举将枚举变量与枚举名对应起来，避免了多个枚举中枚举变量同名的问题 egg::Small</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;第十章&quot;&gt;&lt;a href=&quot;#第十章&quot; class=&quot;headerlink&quot; title=&quot;第十章&quot;&gt;&lt;/a&gt;第十章&lt;/h3&gt;&lt;p&gt;1.&lt;strong&gt;实现类成员函数&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用域解析符 ：：void Stock::updat
+      
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="c++" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/"/>
+    
+      <category term="c++ Primer Plus" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/c/c-Primer-Plus/"/>
+    
+    
+      <category term="c++" scheme="http://yoursite.com/tags/c/"/>
+    
+      <category term="c++ Primer Plus" scheme="http://yoursite.com/tags/c-Primer-Plus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++命名空间中变量跨文件使用的问题</title>
+    <link href="http://yoursite.com/2019/06/03/c-%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%8F%98%E9%87%8F%E8%B7%A8%E6%96%87%E4%BB%B6%E4%BD%BF%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2019/06/03/c-命名空间中变量跨文件使用的问题/</id>
+    <published>2019-06-03T11:13:52.000Z</published>
+    <updated>2019-06-03T11:13:52.849Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="c-命名空间中变量跨文件使用的问题"><a href="#c-命名空间中变量跨文件使用的问题" class="headerlink" title="c++命名空间中变量跨文件使用的问题"></a>c++命名空间中变量跨文件使用的问题</h3><ul><li>不需要考虑namespace，只需要想普通的全局变量那样即可</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;c-命名空间中变量跨文件使用的问题&quot;&gt;&lt;a href=&quot;#c-命名空间中变量跨文件使用的问题&quot; class=&quot;headerlink&quot; title=&quot;c++命名空间中变量跨文件使用的问题&quot;&gt;&lt;/a&gt;c++命名空间中变量跨文件使用的问题&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;不需
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>c++ Primer  Plus(第九章)</title>
